@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title><cite>Tafel Calculator</cite></title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="icon" type="image/x-icon" href="./Philips_logo_black.png">
+
+    <style>
+        p {
+            color: blue;
+        }
+
+        body {
+            background-color: powderblue;
+            background-image: url('./foto1.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            text-align: right;
+            background-color: powderblue;
+
+        }
+
+        .containerClass {
+            padding: 1px;
+            width: 200px;
+            margin: auto;
+            border: 40px solid rgba(128, 0, 100, 0.1);
+            background-color: rgba(201, 212, 54, 0.678);
+            font-family: cursive;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container" class="containerClass">
+
+        <div id="header">
+            <p>Tafel machine</p>
+            <label onclick="klik()" ; style="width:300px;" style="color:rgb(80, 57, 38);"
+                for="multiplicand">vermenigvuldiger</label>
+            <input style="border:2px solid Tomato;" style="text-align:center;"
+                style="background-color:rgb(203, 227, 230);" id="multiplicand" type="number"><span id="error"></span>
+            <button style="color:rgb(47, 0, 255);" style="font-family:verdana;" id="buttonID">maak tafel</button>
+        </div>
+    </div>
+
+
+    </div>
+</body>
+<script>
+    // haal de contaier uit de DOM, zodat we er toegang toe hebben
+
+    let tafel = document.querySelector(`#tafel`)
+    let container = document.querySelector('#container')
+    // we halen input elemet uit de DOM zodat we er toegamg toe hebben
+    let multiplicandInput = document.querySelector(`#multiplicand`)
+
+    console.log(multiplicandInput)
+    // we halen button element uit de DOM, zodat we er toegang toe hebben
+    let button = document.querySelector(`#buttonID`)
+
+
+    //we voegen een addEventlistner toe aan de knop, 
+    //zodat wanneer er op de knop gedrukt wordt de functie maakTafel wordt uitgevoerd
+    button.addEventListener(`click`, multiplicandFunction);
+
+    console.log(`knop`, button)
+
+    //
+
+    function klik() {
+        //dit werkt
+        // const container = document.querySelector("#container");
+        //    alinea.parentElement.removeChild(alinea); 
+        // alinea.style.color = "red";
+
+        //waarom dit niet?
+        // waarOM is tafel een querySelector?
+        // const bla = document.querySelector("#tafel");
+    
+
+        // Waarom werkt dit niet? element p naar binnen halen en rood maken. 
+        const allP = header.getElementsByTagName("p");
+        console.log('p', allP);
+        Array.from(allP).forEach(p => {
+            p.style.color = "red";
+        });
+        
+
+        alert("You clzxcasdcked the coffee cup!");
+        console.log(tafel);
+
+    }
+
+    function multiplicandFunction() {
+
+        console.log(`tieten Tafel`, tafel)
+
+        // tafel = document.getElementById("#container");
+
+        console.log(`tieten Tafel`, tafel)
+
+        //let tafel = document.querySelector(`#container`)
+        if (tafel) { tafel.remove() };
+        //We maken een nieuwe tafel aan.
+        tafel = document.createElement('div');
+        container.append(tafel);
+        console.log(`maakTafel`, multiplicandInput.value)
+        multiplicand = multiplicandInput.value;
+        console.log(multiplicandInput.value)
+
+        multiplier = 1
+        // we maken het p element
+        let p = document.createElement(`p`)
+
+        p.innerText = `De tafel van ${multiplicand}`
+
+        tafel.append(p)
+
+        //htmlPart.append(p)
+
+
+        rows = 10
+        answer = multiplier * multiplicand
+
+        while (multiplier <= rows) {
+
+            // ik moet p(aragraph) steeds opnieuw aanmaken, waarom? -> logisch iedere keer een nieuwe regel
+            let p = document.createElement(`p`)
+            // let p2 = document.createElement(`p2`)
+            p.innerText = `${multiplier} x ${multiplicand} = ${answer}`
+            //console.log(p)
+            // p2 = p
+
+            multiplier++
+            answer = multiplier * multiplicand
+            tafel.append(p)
+
+        }
+
+        // hieronder staat allemaal troep..
+
+        //waarom werkt dit niet?
+        // const awayErmee = document.getElementsByTagName("p");
+        // awayErmee.parentElement.removeChild();
+
+        // waarOM is tafel2 een querySelector?
+        // const tafel2 = document.querySelector("#tafel");
+        // tafel2.style.color = "red"; // Werkt niet, waarom?
+        // tafel2.parentElement.removeChild(tafel2);
+
+        // console.log("testje tafel",tafel2)
+
+        // console.log(tafel)
+
+        // console.log(`tieten Tafel`, htmlPart)
+
+
+
+        //function empty(element) {
+        // const tafel = document.getElementById("tafel");
+
+        // while (element.firstElementChild) {
+        // element.firstElementChild.remove();
+        // }
+        // }
+
+        // let parent = document.getElementById("parent");
+        // empty();
+
+
+
+    }
+
+</script>
+
+</html>
