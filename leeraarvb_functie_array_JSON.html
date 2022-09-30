@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
+    <script>
+        var i = 0;
+
+        console.log(i);
+
+        mijnFunctie(99, "Hallo");
+
+        function mijnFunctie(input = 0, text = "Niet gevult") {
+            input++;
+            console.log('mijnFunctie', input, text);
+        }
+
+        console.log('keer', multiply(2, 4, 10));
+
+        let antwoord = multiply(5, 9, 1);
+
+        console.log('antwoord', antwoord)
+
+        function multiply(x, y, z = 1) {
+            return x * y * z;
+        }
+
+        if (antwoord > 100) {
+            console.log('Wat groot zeg')
+        } else {
+            console.log('Valt mee.')
+        }
+
+        let a = 19;
+        let voorbeeldArray = ["A", "B", "C", "D", "E", "F", 1, 2, a];
+
+        var i = 5;
+
+        console.log('voorbeeldArray', voorbeeldArray[i])
+
+        let persoon = {
+            "naam": "Henk Jansen",
+            "adres": {
+                "straat": "molenweg",
+                "nummer": 17,
+                "postcode": "1100AA",
+                "plaats": "Arnehm"
+            }
+        }
+        console.log('straat', persoon.adres.straat);
+        console.log('nummer', persoon["adres"].nummer);
+
+        console.log(JSON.stringify(persoon));
+
+        let toggle = true;
+
+        toggle = !toggle;
+
+        sendJson(persoon)
+
+        function sendJson(postObj) {
+            //let post = JSON.stringify(postObj)
+
+            //hier de url van jou .....
+            const url = "https://jsonplaceholder.typicode.com/posts"
+            let xhr = new XMLHttpRequest()
+
+            xhr.open('POST', url, true)
+            xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+            xhr.send(post);
+
+            xhr.onload = function () {
+                if (xhr.status === 201) {
+                    console.log("Post successfully created!")
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
