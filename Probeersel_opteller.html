@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <style>
+        .containerClass {
+            text-align: center;
+            color: blue;
+            background-color: rgb(124, 59, 59);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container" class="containerClass">
+        <h1>Op Teller</h1>
+        <div id="tenRow" class="containerClass"></div>
+    </div>
+    <script>
+
+    //     10 rijen weergeven (element tenRow)
+    //     10 rijen wissen
+    //     10 rijen weergeven (element tenRow)
+    //     10 rijen wissen
+
+
+        //let tenRow = document.querySelector("tenRow")
+        let tenRow = document.createElement("div")  // creeer element div
+
+
+        let x = 1
+        while (x <= 10) {
+
+            let p = document.createElement("p")  // creeer element p
+            p.innerText = (x)                    // vul p met x
+            x++
+            tenRow.append(p)
+
+        }
+        container.append(tenRow)
+        while (x <= 20) {
+
+            let p = document.createElement("p")  // creeer element p
+            p.innerText = (x)                    // vul p met x
+            x++
+            tenRow.append(p)
+
+        }
+
+
+ 
+        // console.log(tenRow)
+        container.append(tenRow)
+
+
+
+
+    </script>
+</body>
+
+</html>
