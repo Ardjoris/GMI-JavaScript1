@@ -42,28 +42,40 @@
     function klickOne() {
         console.log("klik")
         let rows = 1
-        let maxRow = 10
+        let tenRow = 11
+        let maxRow = 100
         let time = 100
 
 
-        while (time <= 5000) {
-            console.log("time",time)
-             
+
+        while (time <= 100000) {
+            console.log("time", time)
+
             setTimeout(() => {
                 let p = document.createElement("p")
-                p.innerText = (rows)
+                p.innerText = `${rows} `
                 newDiv.append(p)
                 header.append(newDiv)
+                
+                if (rows >= tenRow) {
+                    // console.log("kom ik hier wel?")
+                    tenRow = tenRow + 10
+                    rows = rows - 1  
+                    deleteObject()
+                    
+                }
                 rows++
-                if (rows==10){deleteObject()}
+               
+                // if (rows==10){deleteObject()}
 
             }, time)
-            
-            time = time + 100
+
+            time = time + 500
             // ik snap niet hoe het werkt, alles gebeurt tegelijkertijd. Wat is nu de volgorde? Wat gebeurd er op de achtergrond?
-            if (time == 1000) { console.log("kom ik hier wel?");deleteObject() }
+           // if (time == 1000) { console.log("kom ik hier wel?"); deleteObject() }
         }
     }
+
 
 
     function deleteObject() {
