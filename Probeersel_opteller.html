@@ -3,65 +3,84 @@
 
 <head>
     <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <!-- <meta http-equiv='X-UA-Compatible' content='IE=edge'> -->
     <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-
+    <!-- <meta name='viewport' content='width=device-width, initial-scale=1'> -->
     <style>
         .containerClass {
             text-align: center;
-            color: blue;
-            background-color: rgb(124, 59, 59);
+            /* color: blue;
+            background-color: rgb(124, 59, 59); */
         }
     </style>
+
 
 </head>
 
 <body>
-    <div id="container" class="containerClass">
-        <h1>Op Teller</h1>
-        <div id="tenRow" class="containerClass"></div>
+    <div id="header" class="containerClass">
+        <h1> The Klikker </h1>
+
+        <button type="button" onclick="klickOne()">Click Me!</button>
+        <button type="button" onclick="deleteObject()">Delete!</button>
+        <button type="button" onclick="blueP()">All Paragraph blue</button>
     </div>
-    <script>
-
-    //     10 rijen weergeven (element tenRow)
-    //     10 rijen wissen
-    //     10 rijen weergeven (element tenRow)
-    //     10 rijen wissen
-
-
-        //let tenRow = document.querySelector("tenRow")
-        let tenRow = document.createElement("div")  // creeer element div
-
-
-        let x = 1
-        while (x <= 10) {
-
-            let p = document.createElement("p")  // creeer element p
-            p.innerText = (x)                    // vul p met x
-            x++
-            tenRow.append(p)
-
-        }
-        container.append(tenRow)
-        while (x <= 20) {
-
-            let p = document.createElement("p")  // creeer element p
-            p.innerText = (x)                    // vul p met x
-            x++
-            tenRow.append(p)
-
-        }
-
-
- 
-        // console.log(tenRow)
-        container.append(tenRow)
 
 
 
-
-    </script>
 </body>
+
+<script>
+
+
+
+
+
+    let header = document.querySelector("#header")   // selecteer het header ID
+    let newDiv = document.createElement("div")      // creeer een nieuw DIV in het header ID
+
+    function klickOne() {
+        console.log("klik")
+        let rows = 1
+        let maxRow = 10
+        let time = 100
+
+
+        while (time <= 5000) {
+            console.log("time",time)
+             
+            setTimeout(() => {
+                let p = document.createElement("p")
+                p.innerText = (rows)
+                newDiv.append(p)
+                header.append(newDiv)
+                rows++
+                if (rows==10){deleteObject()}
+
+            }, time)
+            
+            time = time + 100
+            // ik snap niet hoe het werkt, alles gebeurt tegelijkertijd. Wat is nu de volgorde? Wat gebeurd er op de achtergrond?
+            if (time == 1000) { console.log("kom ik hier wel?");deleteObject() }
+        }
+    }
+
+
+    function deleteObject() {
+        newDiv.remove()
+        newDiv = document.createElement("div")    // hier moet je een nieuw div element aanmaken, om de oude leeg te maken, anders blijf je de oude div vullen
+
+    }
+
+    function blueP() {
+        const allP = newDiv.getElementsByTagName("p");
+        console.log('p', allP);
+        Array.from(allP).forEach(p => {
+            p.style.color = "blue";
+        });
+    }
+</script>
+
+
 
 </html>
