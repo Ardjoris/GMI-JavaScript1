@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    -->
+<style>
+        #canvas {
+            border: solid
+        }
+
+</style>
+
+
+</head>
+
+<body>
+    <h3>Dit is een seconde wijzer</h3>
+    <!-- maak en canvas aan (een veld waarin je kunt tekenen met js) -->
+    
+<canvas id="canvas" width="500" height="400"></canvas>
+</body>
+<script>
+    //selecteer het canvas uit de dom
+    const c = document.querySelector("#canvas");
+    //get access to the <canvas> tags 2D drawing functions
+    let ctx = c.getContext("2d");
+    // set the canvas origin (0,0) to center canvas
+    // All coordinates to the left of center canvas are negative
+    // All coordinates below center canvas are negative --> XX postive!!!!
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+
+
+    // maybe do something like msec * 10 afronden, dus met 10 den msec, is eenvoudiger om bij te houden.
+    // 4 seconds is one full round
+    // 1 full round is from 0 till 255
+    let bits = 8
+    let gageLength = Math.min(canvas.width / 2, canvas.height / 2)
+    let round 
+
+    window.requestAnimationFrame(draw);
+
+    function draw() {
+
+    let date = new Date();
+    let sec = date.getSeconds()
+    //console.log("sec",sec)
+    // full circle = 2pi in 1 minute
+    // one second = 
+    radialsPerSecond= (2 * Math.PI) /60
+    console.log("radialsPerSecond",radialsPerSecond)
+
+
+    linePointToPoint((Math.cos(radialsPerSecond*sec))*gageLength, Math.sin((radialsPerSecond*sec))*gageLength)
+
+
+
+    // if (digitalSteps>255) {digitalSteps=0}   // nu tel ik dus in 4 seconden van 0 - 255 (ongeveer)
+    // let fullRoundTime = 4 * mSec
+    // let digitalSteps = (fullRoundTime / Math.pow (2,bits))  * 1000
+    
+
+   // console.log("digital steps",digitalSteps)
+
+    window.requestAnimationFrame(draw);
+    }
+
+    function linePointToPoint(x, y) {
+        ctx.clearRect(-canvas.width / 2,-canvas.height / 2, canvas.width, canvas.height)
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    }
+
+
+</script>
+
+</html>
