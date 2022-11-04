@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script> -->
+    <style>
+        #canvas {
+            border: solid
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Hallo</h3>
+    <canvas id="canvas" width="300" height="500"></canvas>
+</body>
+<script>
+    const c = document.querySelector("#canvas");
+    let ctx = c.getContext("2d");
+    let img = new Image();
+        img.src = './clock.png';
+
+    window.requestAnimationFrame(makeClock);
+
+    function makeClock() {
+        console.log("hallo");
+        ctx.clear(true);
+        ctx.save();
+        ctx.scale(-1, 1);
+        ctx.drawImage(img, ((c.width / 2) * -1 - img.width/2) , (c.height / 2) - img.height/2);
+        ctx.restore();
+        let date = new Date();
+        let mil = date.getMilliseconds();
+        let sec = date.getSeconds() + mil/1000;
+        let min = date.getMinutes();// + sec/60;
+        let hour = date.getHours() + min/60;
+        
+       
+        let amTimeHour = hour % 12;//hour > 12 ? hour -12 : hour;
+        let degreesHours = amTimeHour * -30 - 90;
+        let degreesMinutes = min * -6 - 90;
+        let degreesSeconds = sec * -6 - 90;
+  
+        let aHour = calculateA(degreesHours, 65);
+        let bHour = calculateB(degreesHours, 65);
+        let aMin = calculateA(degreesMinutes, 90);
+        let bMin = calculateB(degreesMinutes, 90);
+        let aSec = calculateA(degreesSeconds, 105);
+        let bSec = calculateB(degreesSeconds, 105);
+             
+        setHand(aHour, bHour);
+        setHand(aMin, bMin);
+        setHand(aSec, bSec);
+
+        window.requestAnimationFrame(makeClock);
+    }
+    function calculateA(degrees, lenght){
+        return Math.cos(degrees * Math.PI / 180) * lenght;
+    }
+    function calculateB(degrees, lenght){
+        return Math.sin(degrees * Math.PI / 180) * lenght;
+    }
+
+    function setHand(a, b){
+        ctx.beginPath();
+        ctx.moveTo(c.width / 2, c.height / 2);
+        ctx.lineTo(c.width / 2 + a, c.height / 2 + b);
+        ctx.stroke();
+    }
+    CanvasRenderingContext2D.prototype.clear =
+            CanvasRenderingContext2D.prototype.clear || function (preserveTransform) {
+                if (preserveTransform) {
+                    this.save();
+                    this.setTransform(1, 0, 0, 1, 0, 0);
+                }
+
+                this.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                if (preserveTransform) {
+                    this.restore();
+                }
+            };
+</script>
+
+</html>
