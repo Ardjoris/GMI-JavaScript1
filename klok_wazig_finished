@@ -21,18 +21,22 @@
     <h3>Dit is een klok</h3>
     <!-- maak en canvas aan (een veld waarin je kunt tekenen met js) -->
     <div id="header"></div>    
-<canvas id="canvas" width="500" height="500"></canvas>
+<canvas id="canvas" width="300" height="300"></canvas>
+<canvas id="canvasRight" width="300" height="300"></canvas>
 </body>
 <script>
  let time = document.createElement("div") 
 
+
     const c = document.querySelector("#canvas");                     //select canvas from DOM
     let ctx = c.getContext("2d");                                    //get access to the <canvas> tags 2D drawing functions
-        let img = new Image();
-        img.src = './klok.png';
-        ctx.drawImage(img, 0,0)
+
+     //   ctx.drawImage(img, 0,0)
     ctx.translate(canvas.width / 2, canvas.height / 2);              //translate the center in the middle
+    let img = new Image();
+    img.src = './klok.png';
     ctx.strokeStyle = "black"
+    ctx.drawImage(img,-canvas.width / 2, -canvas.height / 2)
 
     
 
@@ -49,6 +53,7 @@
 
             let yes = 1
             let no = 0
+
 
             
     let header = document.querySelector(`#header`)
@@ -115,9 +120,13 @@
             function linePointToPoint(x, y, erease) {
                 
             if (erease==1){ctx.clearRect(-canvas.width / 2,-canvas.height / 2, canvas.width, canvas.height)}
+            let date = new Date();
+            let mSec = date.getMilliseconds()
+                        if (mSec <=500) {zeroOrY = 0; yOrZero = y} else {zeroOrY = y; yOrZero = 0}
+  
             ctx.beginPath();
-            ctx.moveTo(0, y);
-            ctx.lineTo(x, 0);
+            ctx.moveTo(0, zeroOrY);
+            ctx.lineTo(x, yOrZero);
             ctx.stroke();
             }
 
